@@ -30,10 +30,11 @@ An implementation of the bisection method [Numerical Analysis 9e, Burden, Sec 2.
 """
 function bisect_method(f,a,b; maxit = 50, tol = 1e-10)
 
+
     j = 1               # Initialize counter
     fa = f(a)           # Function value at left end
     p = 0      # Form is prefered to (a+b)/2
-
+  
     while j < maxit
         p = a + (b-a)/2
         fp = f(p)  
@@ -47,6 +48,7 @@ function bisect_method(f,a,b; maxit = 50, tol = 1e-10)
         else
             b = p
         end
+
         j = j + 1
     end
 
