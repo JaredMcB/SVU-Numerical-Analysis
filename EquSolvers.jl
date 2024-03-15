@@ -30,27 +30,29 @@ An implementation of the bisection method [Numerical Analysis 9e, Burden, Sec 2.
 """
 function bisect_method(f,a,b; maxit = 50, tol = 1e-10)
 
-    i = 1           # Initialize counter
-    fa = f(a)       # Function value at left end
-    p = 0           # Initialize p so it has global scope
-    
-    while i < maxit
-        p = a + (b-a)/2 # Form is prefered to (a+b)/2
-        fp = f(p)
-        if fp == 0 || (b-a)/2 < tol     # check p is the zero or error is with in tolerance
+
+    j = 1               # Initialize counter
+    fa = f(a)           # Function value at left end
+    p = 0      # Form is prefered to (a+b)/2
+  
+    while j < maxit
+        p = a + (b-a)/2
+        fp = f(p)  
+        if fp == 0 || (b-a)/2 < tol    # check p is the zero or error is with in tolerance
             break
         end
 
-        if fa * fp > 0          # Check if fa and fp are different signs
+        if fa * fp > 0       # Check if fa and fp are different signs
             a = p 
             fa = fp
         else
             b = p
         end
-        i += 1
+
+        j = j + 1
     end
 
-    return p , i
+    return p, j
 end
 
 ## Fixed point iterations
