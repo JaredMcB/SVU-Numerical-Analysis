@@ -59,7 +59,61 @@ end
 
 
 ## Newtons method
+using Plots
+f(x)= x^3+2x+17     # first function aka f(x)
+f_prime(x)= 3x^2+2  # second function aka f'(x)
 
+"""
+Newton's Method
+by Patrick Whitehouse (3-08-2024, Buena Vista, VA)
+
+This is an application of Newton's Method as illustrated by Numerical Analysis 9e, Burden
+
+Inputs:
+f - the originial function
+f' - the deriative of the original function
+x0 - our initial x value
+tolerance - the range of acceptable differences from our f and f'
+max_iterations - the maximum number of iterations that the process will undergo, this is implemented to prevent runtime errors
+
+Outputs:
+Root found: The actual root that we found using Newton's Method
+Residual: The difference between the "true" root and the calculated root that falls within an acceptable range of the tolerance
+Number of iterations: this is the number of iterations that the process underwent before falling within an acceptable tolerance range
+"""
+function newtons_method(f, f_prime, x0, tolerance, max_iterations)  #= setting up and instatiating the guidelines and necessary bounds for NM=#
+    x=x0
+    iterations = 0
+
+    while abs(f(x)) > tolerance && iterations < max_iterations
+        x-= f(x) / f_prime(x)
+        iterations += 1
+    end
+
+    return x, f(x), iterations
+end
+
+x0 = 1.0
+tolerance = 1e-10       # increased tolerance thorugh some trial and error for optimizing residuals
+max_iterations = 100    #added runtime error safeguard#
+
+
+root, residual, iterations = newtons_method(f, f_prime, x0, tolerance, max_iterations)
+
+
+println("Root found: $root")
+println("Residual: $residual")
+println("Number of iterations: $iterations")
+
+
+x_values = range(-2, stop=2, length=100)
+y_values = f.(x_values)
+
+plot(x_values,y_values,label="Function")
+scatter!([root], [0], label="Root", color="red")
+title!("Newton's Method Convergence of function, x^3+2x+17")
+xlabel!("x")
+ylabel!("y")
 ##############################################################
 ## Inverse Quadratic interpolation ###########################
 ##############################################################
