@@ -4,6 +4,15 @@ module NumCalc
 Newton-Cotes by undetermined coefficients
 By Jared McBride (3-13-2024, Buena Vista, Virginia)
 
+## Example
+````
+f = x -> sin(x)^2 - 2x*sin(x) + 1
+
+b = 1.3
+a = 0.75
+
+newton_cotes(f,a,b, n = 4).S
+````
 """
 function newton_cotes(f, a, b; n = 5, closed = true)
     # Choose h and x-grid according to n and open/closed
