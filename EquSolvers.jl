@@ -22,38 +22,65 @@ end
 ## Bisection method
 
 """
-Bisection method
-by Jared McBride (Feb 7, 2024)
+# Bisection method
+by Caden Eskelsen (Mar 7, 2024)
 
-An implementation of the bisection method [Numerical Analysis 9e, Burden, Sec 2.1].
+An implementation of the bisection method [Numerical Analysis 9e, Burden, Sec 2.1]. Using the intermediate value theorem, the bisection method is a binary search method. For more information on bisection see [Wikipedia](https://en.wikipedia.org/wiki/Bisection_method)
+
+### Inputs:
+f - the function whose roots we are looking for 
+
+a, b - the interval in which we are looking for a root
+
+maxit - maximum number of iterations (if not specified the function will bisect 50 times)
+
+tol - error tolorance (set at 1e-10)
+
+### Outputs:
+p - the root found within the interval provided
+
+j - number of iterations 
+
+ps - a vector with the midpoints after each iteration of bisection
+
+## Example:
+```
+f = x -> x*cos(x)
+a = 1
+b = 2
+
+bisection(f,a,b)
+
+```
 
 """
-function bisect_method(f,a,b; maxit = 50, tol = 1e-10)
+function bisection(f,a,b; maxit = 50, tol = 1e-10)
 
-
+    ps = zeros(maxit)
     j = 1               # Initialize counter
     fa = f(a)           # Function value at left end
     p = 0      # Form is prefered to (a+b)/2
-  
-    while j < maxit
-        p = a + (b-a)/2
+
+    while j < maxit  # iterates the loop while less than the specified maximum iterations
+        p = a + (b-a)/2  # finds midpoint of inital guesses a and b
         fp = f(p)  
         if fp == 0 || (b-a)/2 < tol    # check p is the zero or error is with in tolerance
             break
         end
 
         if fa * fp > 0       # Check if fa and fp are different signs
-            a = p 
+            a = p            # replace a with p for bisection in next iteration
             fa = fp
         else
-            b = p
+            b = p            # replace b with p for bisection in next iteration
         end
-
-        j = j + 1
+        ps[j] = p            # adds to vector of midpoints
+        j = j + 1           
     end
 
-    return p, j
+    return p, j, ps[1:j-1]
 end
+
 
 ## Fixed point iterations
 
