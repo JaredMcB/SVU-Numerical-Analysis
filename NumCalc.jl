@@ -43,7 +43,8 @@ by Jared McBride (3-25-2024, Buena Vista, VA)
 Uses the function `newton_cotes` to form a composite quadrature rule. 
 
 inputs:
-    f - integrand,
+
+    f - integrand,\n
     a, b - left and right end points of he whole interval of integration,
     num_blks - the number of subintervals,
     n - degree of quadrature, as in we take n+1 points from each subinterval resulting in `n*num_blks + 1` total points,
