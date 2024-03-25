@@ -64,7 +64,7 @@ h = x[2] - x[1]
 S = zeros(tot_points)
 for m = 1:num_blks
     S[(n-1)*(m-1)+1 : (n-1)*m+1] += 
-        nc.newton_cotes(f, x[(n-1)*(m-1)+1], x[(n-1)*m+1]; n = n-1, closed).S
+        newton_cotes(f, x[(n-1)*(m-1)+1], x[(n-1)*m+1]; n = n-1, closed).S
 end
 
 x = a : (b - a) / (tot_points - 1) : b
