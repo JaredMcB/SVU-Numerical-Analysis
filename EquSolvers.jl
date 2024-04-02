@@ -84,6 +84,40 @@ end
 
 ## Fixed point iterations
 
+"""
+fixed_point by Aaron Miller
+
+The fixed point method determines where g(x) is equal to x
+    for some value x. This is done by taking an initial value x, our p0, 
+    and plugging it into our function g. Whatever value is outputted is then
+    set as our new p0 and a new value is determined. This continues until we 
+    find our fixed point (x,g(x)) where x = g(x).
+
+Choosing a function and an initial point: when choosing a function,
+    it is important to note that the derivative at the initial point
+    (p0) and the derivative at the eventual fixed point must be less than
+    1. In addition, it is important to note that, for our function g(x),
+    the values g(a) and g(b) must be within a and b, where a and b are 
+    values of x. 
+    
+"""
+
+function fixed_point(f, p0; tol=1e-10, maxit=50)  # Our inputs for the function are the function itself and our initial point.
+    i=1     # We start i, our iteration count, at 1. It will end the 'while' statement once it gets reaches (maxit)+1
+    p=0     # Defines p used in the while statement in the global
+    while i<=maxit  # The function will continue until this condition is breached
+        p=f(p0)     # Defining p (formerly 0) as f(p0)
+        if abs(p-p0)<=tol # If they are essentially the same, the process was successful and we move to return
+            break
+        end
+        i=i+1 # Change the iteration count 
+        p0=p  # We get our new p0, whatever the output of f(p0) was above
+    end
+    if i == maxit+1
+        println("Method Failed")
+    end
+    return p, i # Return the fixed point (as determined by the if abs(p-p0)<= tol statement) and i, the number of iterations
+end
 
 ## Newtons method
 using Plots
