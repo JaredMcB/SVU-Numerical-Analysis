@@ -87,18 +87,14 @@ end
 """
 fixed_point by Aaron Miller
 
-The fixed point method determines where g(x) is equal to x
-    for some value x. This is done by taking an initial value x, our p0, 
-    and plugging it into our function g. Whatever value is outputted is then
-    set as our new p0 and a new value is determined. This continues until we 
-    find our fixed point (x,g(x)) where x = g(x).
+The fixed point method determines where g(x) is equal to x for some value x. This is done by taking an initial value x (written as p0 
+    in the method code) and plugging it into our user-defined function written as f in the function. Whatever value is outputted is 
+    then set as our new p0 and a new value is determined. This new value is p in the while statement. This continues until the fixed 
+    point is found, where (x,g(x)) where x = g(x).
 
-Choosing a function and an initial point: when choosing a function,
-    it is important to note that the derivative at the initial point
-    (p0) and the derivative at the eventual fixed point must be less than
-    1. In addition, it is important to note that, for our function g(x),
-    the values g(a) and g(b) must be within a and b, where a and b are 
-    values of x. 
+Notes on choosing a function  f and an initial point p0: when choosing a function, it is important to note that the derivative of the
+    function at the initial point f(p0) and the derivative at the eventual fixed point must be less than 1. In addition, it is important
+    to note that, for some function g(x), the values g(a) and g(b) must be within a and b, where a and b are values of x. 
     
 """
 
