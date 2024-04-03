@@ -85,7 +85,14 @@ end
 ## Fixed point iterations
 
 """
-fixed_point by Aaron Miller
+fixed_point by Aaron Miller, referencing Numerical Analysis by Burden, Section 2.2, 9e
+
+The paragraph draft that I'm considering replacing the one below with:
+The fixed point method normally determines where g(x) is equal to x for some value x by taking an initial point p0, plugging it into a 
+    function g, and plugging this new output g(p0) into the function. This iterates until the output equals the input. The code follows
+    this process by taking the user-inputted initial point p0 and plugging it into our user-defined function f. The value f(p0) is set
+    to equal p in the while statement. Then, this p is defined as p0 in the code, and the process loops, setting f(p0) equal to p, and 
+    so on until an end condition is met. 
 
 The fixed point method determines where g(x) is equal to x for some value x. This is done by taking an initial value x (written as p0 
     in the method code) and plugging it into our user-defined function written as f in the function. Whatever value is outputted is 
