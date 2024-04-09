@@ -153,9 +153,9 @@ max_iterations = 100    #added runtime error safeguard#
 
 root, residual, iterations = newtons_method(f, f_prime, x0, tolerance, max_iterations)
 
-println("Root found: $root")
-println("Residual: $residual")
-println("Number of iterations: $iterations")
+println("Root found: ", root)
+println("Residual: ", residual)
+println("Number of iterations: ", iterations)
 
 x_values = range(-2, stop=2, length=100)
 y_values = f.(x_values)
