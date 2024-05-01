@@ -36,6 +36,7 @@ function newton_cotes(f, a, b; n = 5, closed = true)
             S = as/h)     # Quadrature scheme
 end
 
+
 """
 Composite Newton-Cotes
 by Jared McBride (3-25-2024, Buena Vista, VA)
@@ -43,10 +44,10 @@ by Jared McBride (3-25-2024, Buena Vista, VA)
 Uses the function `newton_cotes` to form a composite quadrature rule. 
 
 inputs:
-    f - integrand,
-    a, b - left and right end points of he whole interval of integration,
-    num_blks - the number of subintervals,
-    n - degree of quadrature, as in we take n+1 points from each subinterval resulting in `n*num_blks + 1` total points,
+- f - integrand,
+- a, b - left and right end points of he whole interval of integration,
+- num_blks - the number of subintervals,
+- n - degree of quadrature, as in we take n+1 points from each subinterval resulting in `n*num_blks + 1` total points,
 
 outputs:
 

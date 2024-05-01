@@ -84,11 +84,39 @@ end
 
 ## Fixed point iterations
 
+"""
+fixed_point by Aaron Miller, referencing Numerical Analysis by Burden, Section 2.2, 9e
+
+The fixed point method normally determines where g(x) is equal to x for some value x by taking an initial point p0, plugging it into a 
+    function g, and plugging this new output g(p0) into the function. This iterates until the output equals the input. The code follows
+    this process by taking the user-inputted initial point p0 and plugging it into our user-defined function f. The value f(p0) is set
+    to equal p in the while statement. Then, this p is defined as p0 in the code, and the process loops, setting f(p0) equal to p, and 
+    so on until an end condition is met. 
+
+Notes on choosing a function  f and an initial point p0: when choosing a function, it is important to note that the derivative of the
+    function at the initial point f(p0) and the derivative at the eventual fixed point must be less than 1. In addition, it is important
+    to note that, for some function g(x), the values g(a) and g(b) must be within a and b, where a and b are values of x. 
+    
+"""
+
+function fixed_point(f, p0; tol=1e-10, maxit=50)  # Our inputs for the function are the function itself and our initial point.
+    i=1     # We start i, our iteration count, at 1. It will end the 'while' statement once it gets reaches (maxit)+1
+    p=0     # Defines p used in the while statement in the global
+    while i<=maxit  # The function will continue until this condition is breached
+        p=f(p0)     # Defining p (formerly 0) as f(p0)
+        if abs(p-p0)<=tol # If they are essentially the same, the process was successful and we move to return
+            break
+        end
+        i=i+1 # Change the iteration count 
+        p0=p  # We get our new p0, whatever the output of f(p0) was above
+    end
+    if i == maxit+1
+        println("Method Failed")
+    end
+    return p, i # Return the fixed point (as determined by the if abs(p-p0)<= tol statement) and i, the number of iterations
+end
 
 ## Newtons method
-using Plots
-f(x)= x^3+2x+17     # first function aka f(x)
-f_prime(x)= 3x^2+2  # second function aka f'(x)
 
 """
 Newton's Method
@@ -107,6 +135,30 @@ Outputs:
 Root found: The actual root that we found using Newton's Method
 Residual: The difference between the "true" root and the calculated root that falls within an acceptable range of the tolerance
 Number of iterations: this is the number of iterations that the process underwent before falling within an acceptable tolerance range
+
+## Example
+using Plots
+f(x)= x^3+2x+17     # first function aka f(x)
+f_prime(x)= 3x^2+2  # second function aka f'(x)
+
+x0 = 1.0
+tolerance = 1e-10       # increased tolerance thorugh some trial and error for optimizing residuals
+max_iterations = 100    #added runtime error safeguard#
+
+root, residual, iterations = newtons_method(f, f_prime, x0, tolerance, max_iterations)
+
+println("Root found: ", root)
+println("Residual: ", residual)
+println("Number of iterations: ", iterations)
+
+x_values = range(-2, stop=2, length=100)
+y_values = f.(x_values)
+
+plot(x_values,y_values,label="Function")
+scatter!([root], [0], label="Root", color="red")
+title!("Newton's Method Convergence of function, x^3+2x+17")
+xlabel!("x")
+ylabel!("y")
 """
 function newtons_method(f, f_prime, x0, tolerance, max_iterations)  #= setting up and instatiating the guidelines and necessary bounds for NM=#
     x=x0
@@ -120,27 +172,7 @@ function newtons_method(f, f_prime, x0, tolerance, max_iterations)  #= setting u
     return x, f(x), iterations
 end
 
-x0 = 1.0
-tolerance = 1e-10       # increased tolerance thorugh some trial and error for optimizing residuals
-max_iterations = 100    #added runtime error safeguard#
 
-
-root, residual, iterations = newtons_method(f, f_prime, x0, tolerance, max_iterations)
-
-
-println("Root found: $root")
-println("Residual: $residual")
-println("Number of iterations: $iterations")
-
-
-x_values = range(-2, stop=2, length=100)
-y_values = f.(x_values)
-
-plot(x_values,y_values,label="Function")
-scatter!([root], [0], label="Root", color="red")
-title!("Newton's Method Convergence of function, x^3+2x+17")
-xlabel!("x")
-ylabel!("y")
 ##############################################################
 ## Inverse Quadratic interpolation ###########################
 ##############################################################
@@ -207,15 +239,6 @@ function QuadNewton(f, p0, p1;
             n = n,
             Ps = P_all)
 end
-
-
-
-
-
-        
-
-
-
 
 
 
