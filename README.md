@@ -22,4 +22,4 @@ One of the benefits of using Newton's Method is the upside of it's intuitiveness
 
 ### Fixed Point Method
 
-The fixed point method finds values of our function where the input doesn't change the value of the function entire. This method works by While the fixed point method is not an explicit root finding method, it is a powerful tool for deriving them. 
+The fixed point method finds values of our function where the input doesn't change the value of the function entire. This method works by iterating outputs and looping them into out input as long as specific conditions are met. The fixed point method determines where g(x) is equal to x by taking an initial value, our p0, and plugging it into our function g. Whatever value is outputted is then set as our new p0 and a new value is determined. While the fixed point method is not an explicit root finding method, it is a powerful tool for deriving them. 
