@@ -96,6 +96,13 @@ The fixed point method determines where g(x) is equal to x for some value x by t
 Notes on choosing a function f and an initial point p0: when choosing a function, it is important to note that the derivative of the
     function at the initial point f(p0) and the derivative at the eventual fixed point must be less than 1. In addition, it is important
     to note that, for some function g(x), the values g(a) and g(b) must be within a and b, where a and b are values of x. 
+
+A simple example of implementing the code:
+        f = x ->  x^4-2  (note that both derivative conditions have been met)
+    
+        fixed_point(f, 3)
+
+output: (-1, 32)
     
 """
 
