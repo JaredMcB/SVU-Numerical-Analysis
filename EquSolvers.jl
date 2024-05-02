@@ -87,13 +87,13 @@ end
 """
 fixed_point by Aaron Miller, referencing Numerical Analysis by Burden, Section 2.2, 9e
 
-The fixed point method normally determines where g(x) is equal to x for some value x by taking an initial point p0, plugging it into a 
+The fixed point method determines where g(x) is equal to x for some value x by taking an initial point p0, plugging it into a 
     function g, and plugging this new output g(p0) into the function. This iterates until the output equals the input. The code follows
     this process by taking the user-inputted initial point p0 and plugging it into our user-defined function f. The value f(p0) is set
     to equal p in the while statement. Then, this p is defined as p0 in the code, and the process loops, setting f(p0) equal to p, and 
     so on until an end condition is met. 
 
-Notes on choosing a function  f and an initial point p0: when choosing a function, it is important to note that the derivative of the
+Notes on choosing a function f and an initial point p0: when choosing a function, it is important to note that the derivative of the
     function at the initial point f(p0) and the derivative at the eventual fixed point must be less than 1. In addition, it is important
     to note that, for some function g(x), the values g(a) and g(b) must be within a and b, where a and b are values of x. 
     
